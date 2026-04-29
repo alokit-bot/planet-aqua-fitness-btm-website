@@ -1,0 +1,328 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    /* Brand palette */
+    --aqua-50: #ecfeff;
+    --aqua-100: #cffafe;
+    --aqua-200: #a5f3fc;
+    --aqua-300: #67e8f9;
+    --aqua-400: #22d3ee;
+    --aqua-500: #06b6d4;
+    --aqua-600: #0891b2;
+    --aqua-700: #0e7490;
+    --aqua-800: #155e75;
+    --aqua-900: #164e63;
+
+    --navy-900: #0a1224;
+    --navy-800: #0f172a;
+    --navy-700: #16213d;
+
+    --gold: #f5b942;
+    --gold-soft: #fcd97a;
+}
+
+body {
+    margin: 0;
+    font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #0a1224;
+    color: #e6f4f7;
+}
+
+::selection {
+    background: rgba(8, 145, 178, 0.4);
+    color: #ecfeff;
+}
+
+.font-display {
+    font-family: "Bebas Neue", "Manrope", sans-serif;
+    letter-spacing: 0.02em;
+}
+
+.font-kannada {
+    font-family: "Tiro Kannada", serif;
+}
+
+@layer base {
+    :root {
+        --background: 222 47% 7%;
+        --foreground: 195 100% 95%;
+        --card: 222 47% 9%;
+        --card-foreground: 195 100% 95%;
+        --popover: 222 47% 7%;
+        --popover-foreground: 195 100% 95%;
+        --primary: 189 94% 43%;
+        --primary-foreground: 222 47% 7%;
+        --secondary: 222 47% 15%;
+        --secondary-foreground: 195 100% 95%;
+        --muted: 222 47% 12%;
+        --muted-foreground: 195 30% 70%;
+        --accent: 189 94% 43%;
+        --accent-foreground: 222 47% 7%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 222 47% 18%;
+        --input: 222 47% 15%;
+        --ring: 189 94% 43%;
+        --radius: 0.75rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* ============== ANIMATIONS ============== */
+
+@keyframes ripple {
+    0% {
+        transform: scale(0.6);
+        opacity: 0.55;
+    }
+    100% {
+        transform: scale(2.4);
+        opacity: 0;
+    }
+}
+
+@keyframes float-y {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes water-wave {
+    0%,
+    100% {
+        transform: translateX(0) translateZ(0);
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0);
+    }
+}
+
+@keyframes pulse-ring {
+    0% {
+        box-shadow: 0 0 0 0 rgba(8, 145, 178, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 18px rgba(8, 145, 178, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(8, 145, 178, 0);
+    }
+}
+
+@keyframes drift {
+    0% {
+        transform: translateX(-30px) translateY(0);
+    }
+    50% {
+        transform: translateX(30px) translateY(-15px);
+    }
+    100% {
+        transform: translateX(-30px) translateY(0);
+    }
+}
+
+.animate-fade-up {
+    animation: fade-in-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-float {
+    animation: float-y 6s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+    animation: pulse-ring 2.2s cubic-bezier(0.66, 0, 0, 1) infinite;
+}
+
+/* ============== UTILITIES ============== */
+
+.glass-card {
+    background: linear-gradient(
+        180deg,
+        rgba(22, 33, 61, 0.65),
+        rgba(15, 23, 42, 0.4)
+    );
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(34, 211, 238, 0.12);
+    box-shadow:
+        0 12px 40px -12px rgba(8, 145, 178, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.glass-card:hover {
+    border-color: rgba(34, 211, 238, 0.32);
+}
+
+.text-aqua-glow {
+    text-shadow: 0 0 24px rgba(34, 211, 238, 0.45);
+}
+
+.divider-gradient {
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(34, 211, 238, 0.4),
+        transparent
+    );
+}
+
+/* Hero water layers */
+.water-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.water-ripple {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid rgba(34, 211, 238, 0.3);
+    animation: ripple 5s ease-out infinite;
+}
+
+.water-grid {
+    background-image:
+        linear-gradient(rgba(34, 211, 238, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 211, 238, 0.06) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+/* Wave SVG bottom of hero */
+.wave-bottom {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.wave-bottom svg {
+    width: 200%;
+    height: 100%;
+    animation: water-wave 14s linear infinite;
+}
+
+/* Reveal on scroll observer class */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Number stat */
+.stat-num {
+    font-family: "Bebas Neue", sans-serif;
+    background: linear-gradient(180deg, #ecfeff 0%, #67e8f9 60%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Custom selection cursor for buttons */
+.btn-aqua {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.btn-aqua::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 255, 255, 0.18),
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.btn-aqua:hover::after {
+    opacity: 1;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #0a1224;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#0e7490, #155e75);
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #0891b2;
+}
+
+/* Plan card "best value" tag */
+.tag-gold {
+    background: linear-gradient(135deg, #f5b942, #fcd97a);
+    color: #1a1407;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+/* Subtle grain texture */
+.grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
