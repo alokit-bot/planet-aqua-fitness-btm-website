@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/planet-aqua-fitness-btm-website/static/css/main.6568e411.css",
+    "main.js": "/planet-aqua-fitness-btm-website/static/js/main.78e4be3b.js",
+    "index.html": "/planet-aqua-fitness-btm-website/index.html",
+    "main.6568e411.css.map": "/planet-aqua-fitness-btm-website/static/css/main.6568e411.css.map",
+    "main.78e4be3b.js.map": "/planet-aqua-fitness-btm-website/static/js/main.78e4be3b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6568e411.css",
+    "static/js/main.78e4be3b.js"
+  ]
+}
